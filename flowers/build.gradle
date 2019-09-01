@@ -22,6 +22,11 @@ android {
         }
     }
 
+    packagingOptions {
+        exclude "META-INF/proguard/coroutines.pro"
+        exclude "META-INF/proguard/androidx-annotations.pro"
+    }
+
     sourceSets {
         main.java.srcDirs += "src/main/kotlin"
         test.java.srcDirs += "src/test/kotlin"
@@ -38,9 +43,15 @@ dependencies {
     implementation "com.android.support:appcompat-v7:$androidSupportVersion"
     implementation "com.android.support.constraint:constraint-layout:$androidConstraintVersion"
     implementation "com.android.support:design:$androidSupportVersion"
+    implementation "androidx.room:room-runtime:$roomVersion"
+    implementation "androidx.room:room-ktx:$roomVersion"
+
+    kapt "androidx.room:room-compiler:$roomVersion"
 
     testImplementation "junit:junit:$jUnitVersion"
 
     androidTestImplementation "com.android.support.test:runner:$androidTestRunnerVersion"
     androidTestImplementation "com.android.support.test.espresso:espresso-core:$androidEspressoVersion"
+    androidTestImplementation "androidx.test:core:$androidTestVersion"
+    androidTestImplementation "androidx.room:room-testing:$roomVersion"
 }
