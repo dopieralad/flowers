@@ -12,7 +12,7 @@ android {
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
         javaCompileOptions {
             annotationProcessorOptions {
@@ -49,18 +49,17 @@ kapt {
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
-    implementation "com.android.support:appcompat-v7:$androidSupportVersion"
-    implementation "com.android.support.constraint:constraint-layout:$androidConstraintVersion"
-    implementation "com.android.support:design:$androidSupportVersion"
-    implementation "androidx.room:room-runtime:$roomVersion"
-    implementation "androidx.room:room-ktx:$roomVersion"
+    implementation "androidx.appcompat:appcompat:$androidxAppCompatVersion"
+    implementation "androidx.constraintlayout:constraintlayout:$androidxConstraintLayoutVersion"
+    implementation "androidx.room:room-ktx:$androidxRoomVersion"
+    implementation "androidx.room:room-runtime:$androidxRoomVersion"
+    implementation "com.google.android.material:material:$androidMaterialVersion"
 
-    kapt "androidx.room:room-compiler:$roomVersion"
+    kapt "androidx.room:room-compiler:$androidxRoomVersion"
 
     testImplementation "junit:junit:$jUnitVersion"
 
-    androidTestImplementation "com.android.support.test:runner:$androidTestRunnerVersion"
-    androidTestImplementation "com.android.support.test.espresso:espresso-core:$androidEspressoVersion"
-    androidTestImplementation "androidx.test:core:$androidTestVersion"
-    androidTestImplementation "androidx.room:room-testing:$roomVersion"
+    androidTestImplementation "androidx.test:core:$androidxTestCoreVersion"
+    androidTestImplementation "androidx.test:runner:$androidxTestRunnerVersion"
+    androidTestImplementation "androidx.room:room-testing:$androidxRoomVersion"
 }

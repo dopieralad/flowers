@@ -1,7 +1,8 @@
 package pl.dopieralad.university.ma.flowers
 
-import android.support.test.InstrumentationRegistry
 
+import android.content.Context
+import androidx.test.core.app.ApplicationProvider
 import org.junit.Test
 
 import org.junit.Assert.*
@@ -16,7 +17,7 @@ class ExampleInstrumentedTest {
     @Test
     fun useAppContext() {
         // Context of the app under test.
-        val appContext = InstrumentationRegistry.getTargetContext()
+        val appContext = ApplicationProvider.getApplicationContext<Context>()
         assertEquals("pl.dopieralad.university.ma.flowers", appContext.packageName)
     }
 }

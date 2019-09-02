@@ -1,10 +1,11 @@
 package pl.dopieralad.university.ma.flowers.flower
 
-import android.support.test.InstrumentationRegistry
-import android.support.test.espresso.matcher.ViewMatchers.assertThat
+import android.content.Context
 import androidx.room.Room
+import androidx.test.core.app.ApplicationProvider
 import org.hamcrest.CoreMatchers.equalTo
 import org.hamcrest.CoreMatchers.notNullValue
+import org.hamcrest.MatcherAssert.assertThat
 import org.junit.After
 import org.junit.Before
 import org.junit.Test
@@ -17,7 +18,7 @@ class FlowerDaoTest {
 
     @Before
     fun setup() {
-        val context = InstrumentationRegistry.getTargetContext()
+        val context = ApplicationProvider.getApplicationContext<Context>()
         database = Room.inMemoryDatabaseBuilder(context, FlowersDatabase::class.java).build()
         flowerDao = database.flowerDao()
     }
