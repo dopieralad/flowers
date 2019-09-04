@@ -24,9 +24,13 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.main_activity)
-
         setSupportActionBar(bar)
 
+        setupFlowerList()
+        setupFab()
+    }
+
+    private fun setupFlowerList() {
         val recyclerAdapter = FlowerListAdapter(this)
         val recyclerView: RecyclerView = findViewById(R.id.flower_list)
         recyclerView.adapter = recyclerAdapter
@@ -34,22 +38,26 @@ class MainActivity : AppCompatActivity() {
 
         flowerViewModel = ViewModelProvider(this).get(FlowerViewModel::class.java)
         flowerViewModel.getAll().observe(this, Observer { recyclerAdapter.flowers = it })
+    }
 
-        fab.setOnClickListener {
-            val intent = Intent(this@MainActivity, NewFlowerActivity::class.java)
-            startActivityForResult(intent, RequestCode.ADD_FLOWER.ordinal)
-        }
+    private fun setupFab() {
+        fab.setOnClickListener { this.onFabClicked() }
+    }
+
+    private fun onFabClicked() {
+        val intent = Intent(this@MainActivity, NewFlowerActivity::class.java)
+        startActivityForResult(intent, RequestCode.ADD_FLOWER.ordinal)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
         when (requestCode) {
-            RequestCode.ADD_FLOWER.ordinal -> handleFlowerAdded(data)
+            RequestCode.ADD_FLOWER.ordinal -> onFlowerAdded(data)
         }
     }
 
-    private fun handleFlowerAdded(data: Intent?) {
+    private fun onFlowerAdded(data: Intent?) {
         data?.let {
             val flower = data.getSerializableExtra(Extras.FLOWER.name) as Flower?
             flower?.let {
