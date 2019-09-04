@@ -4,11 +4,13 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import pl.dopieralad.university.ma.flowers.R
+import java.util.function.Consumer
 
-class FlowerListAdapter(context: Context) : RecyclerView.Adapter<FlowerListAdapter.FlowerViewHolder>() {
+class FlowerListAdapter(context: Context, val deleteListener: Consumer<Flower>) : RecyclerView.Adapter<FlowerListAdapter.FlowerViewHolder>() {
 
     private val layoutInflater = LayoutInflater.from(context)
 
@@ -31,10 +33,13 @@ class FlowerListAdapter(context: Context) : RecyclerView.Adapter<FlowerListAdapt
 
         holder.name.text = flower.name
         holder.species.text = flower.species
+
+        holder.delete.setOnClickListener { deleteListener.accept(flower) }
     }
 
     class FlowerViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val name: TextView = view.findViewById(R.id.flower_name)
         val species: TextView = view.findViewById(R.id.flower_species)
+        val delete: ImageView = view.findViewById(R.id.delete_flower)
     }
 }

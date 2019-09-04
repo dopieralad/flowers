@@ -14,6 +14,7 @@ import pl.dopieralad.university.ma.flowers.flower.FlowerListAdapter
 import pl.dopieralad.university.ma.flowers.flower.FlowerViewModel
 import pl.dopieralad.university.ma.flowers.utils.Extras
 import pl.dopieralad.university.ma.flowers.utils.RequestCode
+import java.util.function.Consumer
 
 class MainActivity : AppCompatActivity() {
 
@@ -30,7 +31,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupFlowerList() {
-        val recyclerAdapter = FlowerListAdapter(this)
+        val recyclerAdapter = FlowerListAdapter(this, Consumer { onFlowerDeleted(it) })
         val recyclerView: RecyclerView = findViewById(R.id.flower_list)
         recyclerView.adapter = recyclerAdapter
         recyclerView.layoutManager = LinearLayoutManager(this)
@@ -65,5 +66,11 @@ class MainActivity : AppCompatActivity() {
                 Snackbar.make(view, "Flower '${it.name}' created!", 2000).show()
             }
         }
+    }
+
+    private fun onFlowerDeleted(flower: Flower) {
+        flowerViewModel.delete(flower)
+        val view: RecyclerView = findViewById(R.id.flower_list)
+        Snackbar.make(view, "Flower '${flower.name}' deleted!", 2000).show()
     }
 }
