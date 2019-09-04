@@ -3,8 +3,6 @@ package pl.dopieralad.university.ma.flowers
 import android.os.Bundle
 import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
-import android.view.Menu
-import android.view.MenuItem
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -19,9 +17,10 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        setSupportActionBar(toolbar)
 
+        setContentView(R.layout.activity_main)
+
+        setSupportActionBar(bar)
 
         val recyclerAdapter = FlowerListAdapter(this)
         val recyclerView: RecyclerView = findViewById(R.id.flower_list)
@@ -32,8 +31,14 @@ class MainActivity : AppCompatActivity() {
         flowerViewModel.getAll().observe(this, Observer { recyclerAdapter.flowers = it })
 
         fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
+            val flower = Flower(name = "Monstera", species = "Monster!")
+
+            flowerViewModel.insert(flower)
+
+            val snackbar = Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_INDEFINITE)
+            snackbar.duration = 2000
+            snackbar.setAction("Dismiss") { snackbar.dismiss() }
+            snackbar.show()
         }
     }
 }
