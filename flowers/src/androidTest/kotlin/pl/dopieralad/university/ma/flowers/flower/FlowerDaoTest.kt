@@ -43,7 +43,7 @@ class FlowerDaoTest {
     @Test
     fun insertsFlower() {
         // Given
-        val flower = Flower(0, "Monstera", "")
+        val flower = Flower(1, "Monstera", "")
 
         // When
         flowerDao.insert(flower)
@@ -65,7 +65,7 @@ class FlowerDaoTest {
     @Test
     fun deletesFlower() {
         // Given
-        val flower = Flower(0, "Monstera", "")
+        val flower = Flower(1, "Monstera", "")
 
         // When
         flowerDao.insert(flower)
