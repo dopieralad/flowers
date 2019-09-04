@@ -15,7 +15,6 @@ import pl.dopieralad.university.ma.flowers.flower.FlowerViewModel
 import pl.dopieralad.university.ma.flowers.utils.Extras
 import pl.dopieralad.university.ma.flowers.utils.RequestCode
 
-
 class MainActivity : AppCompatActivity() {
 
     private lateinit var flowerViewModel: FlowerViewModel
