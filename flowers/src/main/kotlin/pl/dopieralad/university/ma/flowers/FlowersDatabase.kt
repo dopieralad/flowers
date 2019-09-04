@@ -17,7 +17,7 @@ abstract class FlowersDatabase : RoomDatabase() {
         private lateinit var INSTANCE: FlowersDatabase
 
         fun getInstance(context: Context): FlowersDatabase {
-            if (::INSTANCE.isInitialized) {
+            if (!::INSTANCE.isInitialized) {
                 INSTANCE = Room.databaseBuilder(context, FlowersDatabase::class.java, "flowers-database").build()
             }
 
