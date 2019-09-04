@@ -1,5 +1,6 @@
 package pl.dopieralad.university.ma.flowers.flower
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
@@ -12,7 +13,7 @@ interface FlowerDao {
     fun insert(flower: Flower)
 
     @Query("SELECT * FROM flower")
-    fun getAll(): List<Flower>
+    fun getAll(): LiveData<List<Flower>>
 
     @Delete
     fun delete(flower: Flower)

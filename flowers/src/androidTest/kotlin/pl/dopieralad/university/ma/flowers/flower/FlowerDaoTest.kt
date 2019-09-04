@@ -1,17 +1,22 @@
 package pl.dopieralad.university.ma.flowers.flower
 
 import android.content.Context
+import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
-import org.hamcrest.CoreMatchers.equalTo
-import org.hamcrest.CoreMatchers.notNullValue
+import org.hamcrest.CoreMatchers.*
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.After
 import org.junit.Before
+import org.junit.Rule
 import org.junit.Test
 import pl.dopieralad.university.ma.flowers.FlowersDatabase
+import pl.dopieralad.university.ma.flowers.utils.observeOnce
 
 class FlowerDaoTest {
+
+    @get:Rule
+    var instantTaskExecutorRule = InstantTaskExecutorRule()
 
     private lateinit var database: FlowersDatabase
     private lateinit var flowerDao: FlowerDao
@@ -29,8 +34,10 @@ class FlowerDaoTest {
         val flowers = flowerDao.getAll()
 
         // Then
-        assertThat(flowers, notNullValue())
-        assertThat(flowers.size, equalTo(0))
+        flowers.observeOnce {
+            assertThat(it, notNullValue())
+            assertThat(it.isEmpty(), equalTo(true))
+        }
     }
 
     @Test
@@ -42,15 +49,17 @@ class FlowerDaoTest {
         flowerDao.insert(flower)
 
         // Then
-        val flowers = flowerDao.getAll()
-        assertThat(flowers, notNullValue())
-        assertThat(flowers.size, equalTo(1))
+        flowerDao.getAll().observeOnce { flowers ->
+            assertThat(flowers, notNullValue())
+            assertThat(flowers.size, equalTo(1))
 
-        flowers[0].also {
-            assertThat(it.id, equalTo(flower.id))
-            assertThat(it.name, equalTo(flower.name))
-            assertThat(it.species, equalTo(flower.species))
+            flowers[0].also { it ->
+                assertThat(it.id, equalTo(flower.id))
+                assertThat(it.name, equalTo(flower.name))
+                assertThat(it.species, equalTo(flower.species))
+            }
         }
+
     }
 
     @Test
@@ -63,10 +72,10 @@ class FlowerDaoTest {
         flowerDao.delete(flower)
 
         // Then
-
-        val flowers = flowerDao.getAll()
-        assertThat(flowers, notNullValue())
-        assertThat(flowers.size, equalTo(0))
+        flowerDao.getAll().observeOnce { flowers ->
+            assertThat(flowers, notNullValue())
+            assertThat(flowers.size, equalTo(0))
+        }
     }
 
     @After
