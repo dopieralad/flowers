@@ -51,6 +51,8 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
     implementation "androidx.appcompat:appcompat:$androidxAppCompatVersion"
     implementation "androidx.constraintlayout:constraintlayout:$androidxConstraintLayoutVersion"
+    implementation "androidx.lifecycle:lifecycle-extensions:$androidxLifecycleVersion"
+    implementation "androidx.lifecycle:lifecycle-common-java8:$androidxLifecycleVersion"
     implementation "androidx.room:room-ktx:$androidxRoomVersion"
     implementation "androidx.room:room-runtime:$androidxRoomVersion"
     implementation "com.google.android.material:material:$androidMaterialVersion"
@@ -61,5 +63,6 @@ dependencies {
 
     androidTestImplementation "androidx.test:core:$androidxTestCoreVersion"
     androidTestImplementation "androidx.test:runner:$androidxTestRunnerVersion"
+    androidTestImplementation "androidx.arch.core:core-testing:$androidxArchCoreVersion"
     androidTestImplementation "androidx.room:room-testing:$androidxRoomVersion"
 }
