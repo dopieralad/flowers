@@ -8,7 +8,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
-import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.main_activity.*
 import pl.dopieralad.university.ma.flowers.flower.Flower
 import pl.dopieralad.university.ma.flowers.flower.FlowerListAdapter
 import pl.dopieralad.university.ma.flowers.flower.FlowerViewModel
@@ -18,7 +18,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.main_activity)
 
         setSupportActionBar(bar)
 
