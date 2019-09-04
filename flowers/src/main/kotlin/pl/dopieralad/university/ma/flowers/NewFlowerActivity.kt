@@ -14,22 +14,30 @@ class NewFlowerActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.new_flower_activity)
-
         setSupportActionBar(bar)
 
+        setupFab()
+        setupBar()
+    }
+
+    private fun setupFab() {
+        fab.setOnClickListener { onFabClicked() }
+    }
+
+    private fun setupBar() {
         bar.setNavigationOnClickListener { finish() }
+    }
 
-        fab.setOnClickListener {
-            val flowerName = flower_name.text.toString()
-            val flowerSpecies = flower_species.text.toString()
-            val flower = Flower(name = flowerName, species = flowerSpecies)
+    private fun onFabClicked() {
+        val flowerName = flower_name.text.toString()
+        val flowerSpecies = flower_species.text.toString()
+        val flower = Flower(name = flowerName, species = flowerSpecies)
 
-            val intent = Intent()
-            intent.putExtra(Extras.FLOWER.name, flower)
+        val intent = Intent()
+        intent.putExtra(Extras.FLOWER.name, flower)
 
-            setResult(ResultCode.OK.ordinal, intent)
+        setResult(ResultCode.OK.ordinal, intent)
 
-            finish()
-        }
+        finish()
     }
 }
