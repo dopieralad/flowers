@@ -7,6 +7,8 @@ import kotlinx.android.synthetic.main.new_flower_activity.*
 import pl.dopieralad.university.ma.flowers.flower.Flower
 import pl.dopieralad.university.ma.flowers.utils.Extras
 import pl.dopieralad.university.ma.flowers.utils.ResultCode
+import android.content.Context
+import android.view.inputmethod.InputMethodManager
 
 class NewFlowerActivity : AppCompatActivity() {
 
@@ -16,8 +18,16 @@ class NewFlowerActivity : AppCompatActivity() {
         setContentView(R.layout.new_flower_activity)
         setSupportActionBar(bar)
 
+        setupKeyboardBehavior()
         setupFab()
         setupBar()
+    }
+
+    private fun setupKeyboardBehavior() {
+        coordinator.setOnTouchListener { view, _ ->
+            val inputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
+        }
     }
 
     private fun setupFab() {
