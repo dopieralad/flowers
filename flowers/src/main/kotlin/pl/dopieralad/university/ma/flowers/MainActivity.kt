@@ -7,6 +7,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.main_activity.*
 import pl.dopieralad.university.ma.flowers.flower.Flower
@@ -69,8 +70,15 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun onFlowerDeleted(flower: Flower) {
-        flowerViewModel.delete(flower)
-        val view: RecyclerView = findViewById(R.id.flower_list)
-        Snackbar.make(view, "Flower '${flower.name}' deleted!", 2000).show()
+        MaterialAlertDialogBuilder(this, R.style.ThemeOverlay_MaterialComponents_MaterialAlertDialog_Centered)
+                .setTitle("Are you sure?")
+                .setMessage("Do you really want to delete flower '${flower.name}'?")
+                .setNegativeButton("No", null)
+                .setPositiveButton("Yes") { _, _ ->
+                    flowerViewModel.delete(flower)
+                    val view: RecyclerView = findViewById(R.id.flower_list)
+                    Snackbar.make(view, "Flower '${flower.name}' deleted!", 2000).show()
+                }
+                .show()
     }
 }
