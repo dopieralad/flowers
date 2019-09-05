@@ -14,7 +14,7 @@ class FlowerListAdapter(context: Context, val deleteListener: Consumer<Flower>) 
 
     private val layoutInflater = LayoutInflater.from(context)
 
-    var flowers: List<Flower> = emptyList()
+    var flowers: List<FlowerWithSpecies> = emptyList()
         set(flowers) {
             field = flowers
             notifyDataSetChanged()
@@ -31,10 +31,10 @@ class FlowerListAdapter(context: Context, val deleteListener: Consumer<Flower>) 
     override fun onBindViewHolder(holder: FlowerViewHolder, position: Int) {
         val flower = flowers[position]
 
-        holder.name.text = flower.name
-        holder.species.text = flower.species
+        holder.name.text = flower.flower.name
+        holder.species.text = flower.species.name
 
-        holder.delete.setOnClickListener { deleteListener.accept(flower) }
+        holder.delete.setOnClickListener { deleteListener.accept(flower.flower) }
     }
 
     class FlowerViewHolder(view: View) : RecyclerView.ViewHolder(view) {

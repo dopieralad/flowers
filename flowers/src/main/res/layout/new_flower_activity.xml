@@ -8,16 +8,17 @@
         android:layout_height="match_parent"
         tools:context=".MainActivity">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                  android:layout_width="match_parent"
-                  android:layout_height="match_parent"
-                  android:paddingLeft="16dp"
-                  android:paddingRight="16dp"
-                  android:orientation="vertical">
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="56dp"
+            android:orientation="vertical">
         <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingTop="16dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
                 android:hint="@string/flower_name">
             <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/flower_name"
@@ -27,18 +28,21 @@
             />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:paddingTop="16dp"
-                android:hint="@string/flower_species">
-            <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/flower_species"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/species_list"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="textCapSentences"
+                    android:layout_height="match_parent"
+                    android:scrollbars="vertical"
+                    tools:listitem="@layout/species_list_item"
             />
-        </com.google.android.material.textfield.TextInputLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </LinearLayout>
 
     <com.google.android.material.bottomappbar.BottomAppBar

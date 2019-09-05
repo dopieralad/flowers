@@ -10,7 +10,7 @@ import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
-import pl.dopieralad.university.ma.flowers.FlowersDatabase
+import pl.dopieralad.university.ma.flowers.database.FlowersDatabase
 import pl.dopieralad.university.ma.flowers.utils.observeOnce
 
 class FlowerDaoTest {

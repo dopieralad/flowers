@@ -1,8 +1,7 @@
 <resources>
-    <string name="app_name">Flowers</string>
-    <string name="action_settings">Settings</string>
-    <string name="flower_name">Name</string>
-    <string name="flower_species">Species</string>
-    <string name="delete">Delete</string>
-    <string name="image">Image</string>
+    <string name="app_name">Kwiaty</string>
+    <string name="flower_name">Nazwa</string>
+    <string name="flower_species">Gatunek</string>
+    <string name="delete">Usuń</string>
+    <string name="image">Obrazek</string>
 </resources>

@@ -2,13 +2,13 @@ package pl.dopieralad.university.ma.flowers.flower
 
 import android.content.Context
 import androidx.lifecycle.LiveData
-import pl.dopieralad.university.ma.flowers.FlowersDatabase
+import pl.dopieralad.university.ma.flowers.database.FlowersDatabase
 import pl.dopieralad.university.ma.flowers.utils.Asynchronous
 
 class FlowerRepository(context: Context) {
 
     private val flowerDao: FlowerDao
-    private val allFlowers: LiveData<List<Flower>>
+    private val allFlowers: LiveData<List<FlowerWithSpecies>>
 
     init {
         val flowersDatabase = FlowersDatabase.getInstance(context)
