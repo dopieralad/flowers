@@ -1,7 +1,11 @@
 <resources>
+    <string name="date_format">HH:mm dd.MM.yyyy</string>
     <string name="app_name">Kwiaty</string>
     <string name="flower_name">Nazwa</string>
     <string name="flower_species">Gatunek</string>
     <string name="delete">Usuń</string>
     <string name="image">Obrazek</string>
+    <string name="flower_requires_watering">Kwiat \'%s\' wymaga podlania.</string>
+    <string name="never_watered">Zdaje się, że nigdy nie był podlewany.</string>
+    <string name="last_watered">Ostatnio był podlany %s.</string>
 </resources>

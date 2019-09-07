@@ -13,6 +13,16 @@ interface FlowerDao {
     @Query("SELECT * FROM flower")
     fun getAll(): LiveData<List<FlowerWithSpecies>>
 
+    @Transaction
+    @Query("""
+        SELECT flower.*
+        FROM flower flower
+        LEFT JOIN species species
+            ON flower.speciesId = species.id
+        WHERE flower.lastWatered + species.wateringFrequency * 24 * 60 * 60 * 1000 < strftime('%s','now') * 1000
+    """)
+    fun getUnwatered(): List<Flower>
+
     @Delete
     fun delete(flower: Flower)
 }
