@@ -16,4 +16,5 @@
     <string name="no">Nie</string>
     <string name="are_you_sure">Czy jesteś pewien?</string>
     <string name="delete_flower_confirmation">Czy na pewno chcesz usunąć kwiat \'%s\'?</string>
+    <string name="no_flowers">Nie dodałeś jeszcze żadnych kwiatów</string>
 </resources>

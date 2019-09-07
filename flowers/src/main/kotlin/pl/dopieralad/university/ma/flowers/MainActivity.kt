@@ -21,6 +21,8 @@ import android.app.AlarmManager
 import android.app.PendingIntent
 import android.content.Context
 import android.util.Log
+import android.view.View
+import android.widget.LinearLayout
 import java.util.Date
 
 class MainActivity : AppCompatActivity() {
@@ -58,12 +60,24 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupFlowerList() {
         val recyclerAdapter = FlowerListAdapter(this, Consumer { onFlowerWatered(it) }, Consumer { onFlowerDeleted(it) })
+
         val recyclerView: RecyclerView = findViewById(R.id.flower_list)
         recyclerView.adapter = recyclerAdapter
         recyclerView.layoutManager = LinearLayoutManager(this)
 
+        val noFlowerInfo: LinearLayout = findViewById(R.id.no_flower_info)
+
         flowerViewModel = ViewModelProvider(this).get(FlowerViewModel::class.java)
-        flowerViewModel.getAll().observe(this, Observer { recyclerAdapter.flowers = it })
+        flowerViewModel.getAll().observe(this, Observer {
+            recyclerAdapter.flowers = it
+            if (it.isEmpty()) {
+                noFlowerInfo.visibility = View.VISIBLE
+                recyclerView.visibility = View.GONE
+            } else {
+                noFlowerInfo.visibility = View.GONE
+                recyclerView.visibility = View.VISIBLE
+            }
+        })
     }
 
     private fun setupFab() {
