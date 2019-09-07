@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "7e8c497a289e096233295942f931eadd",
+    "identityHash": "9ff6362279b561a16723366fdad0e31d",
     "entities": [
       {
         "tableName": "Flower",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT NOT NULL, `speciesId` INTEGER NOT NULL, FOREIGN KEY(`speciesId`) REFERENCES `Species`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT NOT NULL, `speciesId` INTEGER NOT NULL, `lastWatered` INTEGER NOT NULL, FOREIGN KEY(`speciesId`) REFERENCES `Species`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
         "fields": [
           {
             "fieldPath": "id",
@@ -23,6 +23,12 @@
           {
             "fieldPath": "speciesId",
             "columnName": "speciesId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "lastWatered",
+            "columnName": "lastWatered",
             "affinity": "INTEGER",
             "notNull": true
           }
@@ -99,7 +105,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '7e8c497a289e096233295942f931eadd')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '9ff6362279b561a16723366fdad0e31d')"
     ]
   }
 }

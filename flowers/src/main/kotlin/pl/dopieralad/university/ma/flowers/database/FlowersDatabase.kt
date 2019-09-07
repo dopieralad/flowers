@@ -4,14 +4,14 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import androidx.room.migration.Migration
-import androidx.sqlite.db.SupportSQLiteDatabase
+import androidx.room.TypeConverters
 import pl.dopieralad.university.ma.flowers.flower.Flower
 import pl.dopieralad.university.ma.flowers.flower.FlowerDao
 import pl.dopieralad.university.ma.flowers.species.Species
 import pl.dopieralad.university.ma.flowers.species.SpeciesDao
 
 @Database(entities = [Flower::class, Species::class], version = 1)
+@TypeConverters(Converters::class)
 abstract class FlowersDatabase : RoomDatabase() {
 
     abstract fun flowerDao(): FlowerDao
