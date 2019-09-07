@@ -9,4 +9,11 @@
     <string name="flower_requires_watering">Kwiat \'%s\' wymaga podlania.</string>
     <string name="never_watered">Zdaje się, że nigdy nie był podlewany.</string>
     <string name="last_watered">Ostatnio był podlany %s.</string>
+    <string name="flower_created">Kwiat \'%s\' został dodany.</string>
+    <string name="flower_watered">Kwiat \'%s\' został podlany.</string>
+    <string name="flower_deleted">Kwiat \'%s\' został usunięty.</string>
+    <string name="yes">Tak</string>
+    <string name="no">Nie</string>
+    <string name="are_you_sure">Czy jesteś pewien?</string>
+    <string name="delete_flower_confirmation">Czy na pewno chcesz usunąć kwiat \'%s\'?</string>
 </resources>

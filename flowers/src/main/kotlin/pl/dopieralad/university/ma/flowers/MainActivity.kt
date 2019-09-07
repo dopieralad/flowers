@@ -89,7 +89,7 @@ class MainActivity : AppCompatActivity() {
             flower?.let {
                 flowerViewModel.insert(it)
                 val view: RecyclerView = findViewById(R.id.flower_list)
-                Snackbar.make(view, "Flower '${it.name}' created!", 2000).show()
+                Snackbar.make(view, getString(R.string.flower_created, it.name), 2000).show()
             }
         }
     }
@@ -99,19 +99,19 @@ class MainActivity : AppCompatActivity() {
             it.lastWatered = Date()
             flowerViewModel.update(it)
             val view: RecyclerView = findViewById(R.id.flower_list)
-            Snackbar.make(view, "Flower '${it.name}' watered!", 2000).show()
+            Snackbar.make(view, getString(R.string.flower_watered, it.name), 2000).show()
         }
     }
 
     private fun onFlowerDeleted(flower: Flower) {
         MaterialAlertDialogBuilder(this, R.style.ThemeOverlay_MaterialComponents_MaterialAlertDialog_Centered)
-                .setTitle("Are you sure?")
-                .setMessage("Do you really want to delete flower '${flower.name}'?")
-                .setNegativeButton("No", null)
-                .setPositiveButton("Yes") { _, _ ->
+                .setTitle(getString(R.string.are_you_sure))
+                .setMessage(getString(R.string.delete_flower_confirmation, flower.name))
+                .setNegativeButton(getString(R.string.no), null)
+                .setPositiveButton(getString(R.string.yes)) { _, _ ->
                     flowerViewModel.delete(flower)
                     val view: RecyclerView = findViewById(R.id.flower_list)
-                    Snackbar.make(view, "Flower '${flower.name}' deleted!", 2000).show()
+                    Snackbar.make(view, getString(R.string.flower_deleted, flower.name), 2000).show()
                 }
                 .show()
     }
