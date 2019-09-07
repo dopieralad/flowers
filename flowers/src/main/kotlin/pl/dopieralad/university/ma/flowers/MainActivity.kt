@@ -13,9 +13,14 @@ import kotlinx.android.synthetic.main.main_activity.*
 import pl.dopieralad.university.ma.flowers.flower.Flower
 import pl.dopieralad.university.ma.flowers.flower.FlowerListAdapter
 import pl.dopieralad.university.ma.flowers.flower.FlowerViewModel
+import pl.dopieralad.university.ma.flowers.reminder.ReminderReceiver
 import pl.dopieralad.university.ma.flowers.utils.Extras
 import pl.dopieralad.university.ma.flowers.utils.RequestCode
 import java.util.function.Consumer
+import android.app.AlarmManager
+import android.app.PendingIntent
+import android.content.Context
+import android.util.Log
 
 class MainActivity : AppCompatActivity() {
 
@@ -27,8 +32,27 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.main_activity)
         setSupportActionBar(bar)
 
+        setupReminder()
         setupFlowerList()
         setupFab()
+    }
+
+    private fun setupReminder() {
+
+        val intent = Intent(applicationContext, ReminderReceiver::class.java)
+        val pendingIntent = PendingIntent.getBroadcast(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
+
+        val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
+
+        alarmManager.cancel(pendingIntent)
+        alarmManager.setInexactRepeating(
+                AlarmManager.RTC_WAKEUP,
+                System.currentTimeMillis(),
+                60_000L,
+                pendingIntent
+        )
+
+        Log.i("MainActivity", "Set up!")
     }
 
     private fun setupFlowerList() {
