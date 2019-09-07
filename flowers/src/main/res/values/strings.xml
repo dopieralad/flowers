@@ -4,6 +4,7 @@
     <string name="flower_name">Nazwa</string>
     <string name="flower_species">Gatunek</string>
     <string name="delete">Usuń</string>
+    <string name="water">Podlej</string>
     <string name="image">Obrazek</string>
     <string name="flower_requires_watering">Kwiat \'%s\' wymaga podlania.</string>
     <string name="never_watered">Zdaje się, że nigdy nie był podlewany.</string>

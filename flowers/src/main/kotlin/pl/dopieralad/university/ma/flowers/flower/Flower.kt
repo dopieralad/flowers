@@ -17,5 +17,5 @@ data class Flower(
         val id: Int = 0,
         val name: String,
         val speciesId: Int,
-        val lastWatered: Date = Date(0)
+        var lastWatered: Date = Date(0)
 ) : Serializable

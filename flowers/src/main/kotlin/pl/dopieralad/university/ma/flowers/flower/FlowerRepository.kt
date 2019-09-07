@@ -21,5 +21,7 @@ class FlowerRepository(context: Context) {
 
     fun getAll() = allFlowers
 
+    fun update(flower: Flower) = Asynchronous { flowerDao.update(flower) }
+
     fun delete(flower: Flower) = Asynchronous { flowerDao.delete(flower) }
 }

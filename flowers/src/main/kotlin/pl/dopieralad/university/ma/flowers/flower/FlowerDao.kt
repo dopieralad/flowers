@@ -23,6 +23,9 @@ interface FlowerDao {
     """)
     fun getUnwatered(): List<Flower>
 
+    @Update
+    fun update(flower: Flower)
+
     @Delete
     fun delete(flower: Flower)
 }

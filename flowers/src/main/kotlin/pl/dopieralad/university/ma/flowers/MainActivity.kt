@@ -21,6 +21,7 @@ import android.app.AlarmManager
 import android.app.PendingIntent
 import android.content.Context
 import android.util.Log
+import java.util.Date
 
 class MainActivity : AppCompatActivity() {
 
@@ -56,7 +57,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupFlowerList() {
-        val recyclerAdapter = FlowerListAdapter(this, Consumer { onFlowerDeleted(it) })
+        val recyclerAdapter = FlowerListAdapter(this, Consumer { onFlowerWatered(it) }, Consumer { onFlowerDeleted(it) })
         val recyclerView: RecyclerView = findViewById(R.id.flower_list)
         recyclerView.adapter = recyclerAdapter
         recyclerView.layoutManager = LinearLayoutManager(this)
@@ -90,6 +91,15 @@ class MainActivity : AppCompatActivity() {
                 val view: RecyclerView = findViewById(R.id.flower_list)
                 Snackbar.make(view, "Flower '${it.name}' created!", 2000).show()
             }
+        }
+    }
+
+    private fun onFlowerWatered(flower: Flower) {
+        flower.let {
+            it.lastWatered = Date()
+            flowerViewModel.update(it)
+            val view: RecyclerView = findViewById(R.id.flower_list)
+            Snackbar.make(view, "Flower '${it.name}' watered!", 2000).show()
         }
     }
 

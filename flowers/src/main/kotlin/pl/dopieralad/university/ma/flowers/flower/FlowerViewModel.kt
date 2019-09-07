@@ -11,5 +11,7 @@ class FlowerViewModel(application: Application) : AndroidViewModel(application) 
 
     fun getAll() = flowerRepository.getAll()
 
+    fun update(flower: Flower) = flowerRepository.update(flower)
+
     fun delete(flower: Flower) = flowerRepository.delete(flower)
 }

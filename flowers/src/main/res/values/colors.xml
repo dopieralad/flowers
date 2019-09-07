@@ -9,4 +9,6 @@
     <color name="secondaryLight">#ffff6e</color>
     <color name="secondaryDark">#99aa00</color>
     <color name="secondaryText">#000000</color>
+
+    <color name="blue">#0288d1</color>
 </resources>
